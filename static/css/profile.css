@@ -9,8 +9,9 @@ body {
 }
 
 .main-content {
-	padding-top: 30px;
+	padding-top: 120px;
 	padding-bottom: 100px;
+	padding-right: 300px;
 }
 
 .banner {
