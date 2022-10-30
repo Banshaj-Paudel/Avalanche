@@ -1,4 +1,3 @@
-from typing import Text
 from flask import Flask, render_template, url_for, redirect, request
 from datetime import datetime
 from peewee import *
@@ -20,10 +19,13 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 #     migrator.drop_column('some_table', 'old_column'),
 # )
     
-class User(Model):
+class BaseTable(Model):
+    class Meta:
+        database = db
+class User(BaseTable):
     name = TextField()
     age = IntegerField()
-    StartDate = TextField(default=datetime.now())
+    StartDate = TextField(default=datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     Country = TextField()
     fileName= TextField()
     EmergencyContact = TextField()
@@ -32,7 +34,7 @@ class User(Model):
     class Meta:
         database = db
 
-class Location(Model):
+class Location(BaseTable):
     DeviceID = ForeignKeyField(User, backref="DeviceID")
     Latitude = FloatField()
     Longitude = FloatField()
