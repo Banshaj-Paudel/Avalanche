@@ -206,7 +206,7 @@ $(document).ready(function(){
                     {% for user in users%}
                     
                     <tr class='clickable-row' data-href="profile/{{user.age}}">
-                        <td>{{user}}</td>
+                        <td>{{loop.index}}</td>
                         <td>{{user.name}}</td>
                         <td>{{user.StartDate}}</td>                        
                         <td>{{user.Country}}</td>
