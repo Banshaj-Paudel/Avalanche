@@ -202,8 +202,10 @@ $(document).ready(function(){
                 </thead>
                 
                 <tbody>
+                    
                     {% for user in users%}
-                    <tr>
+                    
+                    <tr class='clickable-row' data-href="profile/{{user.age}}">
                         <td>{{user}}</td>
                         <td>{{user.name}}</td>
                         <td>{{user.StartDate}}</td>                        
@@ -215,6 +217,7 @@ $(document).ready(function(){
                             <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
                         </td>
                     </tr>
+                    </a>
                     {% endfor %}
                 </tbody>
             
@@ -245,6 +248,14 @@ $(document).ready(function(){
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
     }
+
+    jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+});
+
+
     </script>
 </body>
 </html>
