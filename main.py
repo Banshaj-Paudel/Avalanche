@@ -51,6 +51,7 @@ def dashboard():
     users = User.select()
     return render_template('dashboard.html', users=users)
 
+
 # Register user route
 @app.route('/register',methods=['GET','POST'])
 def register():
@@ -73,6 +74,13 @@ def register():
 def profile(age):
     user = User.get(User.age == age)
     return render_template('profile.html', user=user)
+
+@app.route('/delete/<username>')
+def delete(username):
+    obj=User.get(User.name==username)
+    obj.delete_instance()
+    return redirect(url_for('dashboard'))
+    
 
 # server
 if __name__ == '__main__':
